@@ -8,7 +8,7 @@ const Playlist = require('./playlist');
 const Artist = require('./artist');
 const Album = require('./album');
 const Song = require('./song');
-
+const Genre = require('./genres');
 // Form the associations
 
 Song.belongsTo(Album);
@@ -16,10 +16,9 @@ Album.hasMany(Song);
 Album.belongsTo(Artist); // "Album Artist" is a thing, even if there are
                          // other artists on the album.
 
-
+Genre.belongsToMany(Song, {through: 'songGenre'});
 Artist.belongsToMany(Song, { through: 'artistSong' });
 Song.belongsToMany(Artist, { through: 'artistSong' });
-
 Song.belongsToMany(Playlist, { through: 'playlistSong' });
 Playlist.belongsToMany(Song, { through: 'playlistSong' });
 
@@ -29,5 +28,6 @@ module.exports = {
   Album: Album,
   Song: Song,
   Artist: Artist,
-  Playlist: Playlist
+  Playlist: Playlist,
+  Genre: Genre
 };

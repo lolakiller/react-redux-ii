@@ -35,5 +35,4 @@ module.exports = db.define('playlist', {
       .spread((result, song) => song);
     }
   }
-
 });
